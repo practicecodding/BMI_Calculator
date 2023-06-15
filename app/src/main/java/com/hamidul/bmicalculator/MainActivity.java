@@ -2,11 +2,14 @@ package com.hamidul.bmicalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +37,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String sWeight,sFeet,sInch;
-                Float wight;
-                Float feet;
-                Float inch;
-                double height;
-                double bmi;
+                float wight;
+                float feet;
+                float inch;
+                float height;
+                float bmi;
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
 
                 //String Start
                 sWeight = edWeight.getText().toString();
@@ -65,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 wight = Float.parseFloat(sWeight);
                 feet = Float.parseFloat(sFeet);
                 inch = Float.parseFloat(sInch);
-                height = feet*0.3048 + inch*0.0254;
-                bmi = wight/(height*height);
+                height = (float) (feet*0.3048 + inch*0.0254);
+                bmi = (float) (wight/(height*height));
+                bmi = Float.valueOf(decimalFormat.format(bmi));
                 //Float End
+
+
+
 
                 tvResult.setText("Your BMI Index is "+bmi);
                 tvResult.setVisibility(View.VISIBLE);
@@ -80,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
 
 
 
