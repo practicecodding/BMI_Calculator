@@ -35,12 +35,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String sWeight,sFeet,sInch;
-                Float wight,feet,inch;
+                Float wight,feet,inch,height,bmi;
 
                 //String Start
                 sWeight = edWeight.getText().toString();
+                if (sWeight.equals("")){
+                    edWeight.setError("Please Enter Your Weight");
+                    edWeight.requestFocus();
+                    return;
+                }
                 sFeet = edFeet.getText().toString();
+                if (sFeet.equals("")) {
+                    edFeet.setError("Please Enter Your Height");
+                    edFeet.requestFocus();
+                    return;
+                }
                 sInch = edInch.getText().toString();
+                    if (sInch.equals("")) {
+                        edInch.setError("Please Enter Your Height");
+                        edInch.requestFocus();
+                        return;
+                    }
                 //String End
 
                 //Float Start
@@ -48,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 feet = Float.parseFloat(sFeet);
                 inch = Float.parseFloat(sInch);
                 //Float End
+
 
 
 
