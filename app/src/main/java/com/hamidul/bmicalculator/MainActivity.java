@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edWeight,edFeet,edInch;
     TextView tvResult;
     Button button;
+    LinearLayout test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,9 +117,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
 
