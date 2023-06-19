@@ -34,6 +34,27 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         //=======================================
 
+        edWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvResult.setVisibility(View.GONE);
+            }
+        });
+
+        edFeet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvResult.setVisibility(View.GONE);
+            }
+        });
+
+        edInch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tvResult.setVisibility(View.GONE);
+            }
+        });
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,19 +94,25 @@ public class MainActivity extends AppCompatActivity {
                 height = (float) (feet*0.3048 + inch*0.0254);
                 bmi = (float) (wight/(height*height));
                 bmi = Float.valueOf(decimalFormat.format(bmi));
+
                 //Float End
 
+                if (inch>12){
+                    edInch.setError("Please Enter Your Valid Inch");
+                }else if (bmi>24){
+                    tvResult.setText("Over Wait \n\nYour BMI Index is "+bmi);
+                    tvResult.setVisibility(View.VISIBLE);
+                } else if (bmi>18) {
+                    tvResult.setText("Normal \n\nYour BMI Index is "+bmi);
+                    tvResult.setVisibility(View.VISIBLE);
+                }else {
+                    tvResult.setText("Under Wait \n\nYour BMI Index is "+bmi);
+                    tvResult.setVisibility(View.VISIBLE);
+                }
 
 
-
-                tvResult.setText("Your BMI Index is "+bmi);
-                tvResult.setVisibility(View.VISIBLE);
-
-
-
-
-
-
+                //tvResult.setText("Your BMI Index is "+bmi);
+                //tvResult.setVisibility(View.VISIBLE);
 
             }
         });
@@ -95,6 +122,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
