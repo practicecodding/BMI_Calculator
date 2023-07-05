@@ -94,22 +94,21 @@ public class MainActivity extends AppCompatActivity {
                 height = (float) (feet*0.3048 + inch*0.0254);
                 bmi = (float) (wight/(height*height));
                 bmi = Float.valueOf(decimalFormat.format(bmi));
-
                 //Float End
 
                 if (inch>12){
                     edInch.setError("Please Enter Your Valid Inch");
+                    edInch.requestFocus();
                 }else if (bmi>24){
                     tvResult.setText("Over Wait \n\nYour BMI Index is "+bmi);
                     tvResult.setVisibility(View.VISIBLE);
-                } else if (bmi>18) {
+                } else if (bmi>=18) {
                     tvResult.setText("Normal \n\nYour BMI Index is "+bmi);
                     tvResult.setVisibility(View.VISIBLE);
                 }else {
                     tvResult.setText("Under Wait \n\nYour BMI Index is "+bmi);
                     tvResult.setVisibility(View.VISIBLE);
                 }
-
 
                 //tvResult.setText("Your BMI Index is "+bmi);
                 //tvResult.setVisibility(View.VISIBLE);
