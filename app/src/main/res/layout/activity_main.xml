@@ -17,7 +17,6 @@
       android:orientation="vertical"
       android:background="#FFFFFF"
     >
-
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -74,7 +73,8 @@
           android:layout_weight="1"
           android:padding="15dp"
           android:inputType="number"
-          android:maxLength="2"
+          android:maxLength="1"
+          android:importantForAutofill="no"
           />
 
       <EditText
@@ -104,6 +104,9 @@
         android:textColor="@color/black"
         android:textAllCaps="true"
         android:textSize="15sp"
+        android:enabled="true"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         />
 
     <TextView

@@ -3,6 +3,8 @@ package com.hamidul.bmicalculator;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -34,26 +36,9 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         //=======================================
 
-        edWeight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvResult.setVisibility(View.GONE);
-            }
-        });
-
-        edFeet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvResult.setVisibility(View.GONE);
-            }
-        });
-
-        edInch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tvResult.setVisibility(View.GONE);
-            }
-        });
+        edWeight.addTextChangedListener(textWatcher);
+        edFeet.addTextChangedListener(textWatcher);
+        edInch.addTextChangedListener(textWatcher);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,19 +52,24 @@ public class MainActivity extends AppCompatActivity {
                 DecimalFormat decimalFormat = new DecimalFormat("#.#");
 
                 //String Start
-                sWeight = edWeight.getText().toString();
+               sWeight = edWeight.getText().toString();
+
                 if (sWeight.equals("")){
                     edWeight.setError("Please Enter Your Weight");
                     edWeight.requestFocus();
                     return;
                 }
+
                 sFeet = edFeet.getText().toString();
+
                 if (sFeet.equals("")) {
                     edFeet.setError("Please Enter Your Height");
                     edFeet.requestFocus();
                     return;
                 }
+
                 sInch = edInch.getText().toString();
+
                     if (sInch.equals("")) {
                         edInch.setError("Please Enter Your Height");
                         edInch.requestFocus();
@@ -99,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 if (inch>12){
                     edInch.setError("Please Enter Your Valid Inch");
                     edInch.requestFocus();
-                }else if (bmi>24){
+                    return;
+                } else
+                if (bmi>24){
                     tvResult.setText("Over Wait \n\nYour BMI Index is "+bmi);
                     tvResult.setVisibility(View.VISIBLE);
                 } else if (bmi>=18) {
@@ -116,12 +108,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-    }
+    } //onCreate
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+    private TextWatcher textWatcher =new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            String Weight = edWeight.getText().toString();
+            String Feet = edFeet.getText().toString();
+            String Inch = edInch.getText().toString();
+
+            //button.setEnabled(!Weight.isEmpty() && !Feet.isEmpty() && !Inch.isEmpty());
+
+            if (count<before){
+                tvResult.setVisibility(View.GONE);
+            } else {
+                tvResult.setVisibility(View.GONE);
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
 }
